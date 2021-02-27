@@ -12,23 +12,12 @@ export class SchemaService {
     private readonly itemService: ItemService,
   ) {}
 
-  async enqueueSchema(): Promise<void> {
-    const jobId = 'schema';
-
-    const oldJob = await this.schemaQueue.getJob(jobId);
-
-    if (oldJob?.finishedOn !== undefined) {
-      try {
-        await oldJob.remove();
-      } catch (error) {}
-    }
-
+  async enqueueSchema(start: number): Promise<void> {
     await this.schemaQueue.add(
       {
-        jobId,
+        start: start,
       },
       {
-        jobId: jobId,
         attempts: 3,
         backoff: {
           type: 'exponential',
