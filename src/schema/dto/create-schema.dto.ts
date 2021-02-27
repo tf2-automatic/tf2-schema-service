@@ -1,5 +1,5 @@
 import { Type } from 'class-transformer';
-import { IsObject } from 'class-validator';
+import { IsObject, IsOptional } from 'class-validator';
 import {
   IsArray,
   IsBoolean,
@@ -34,7 +34,7 @@ export class ItemDto {
   @IsBoolean()
   readonly proper_name: boolean;
 
-  @IsDefined()
+  @IsOptional()
   @IsString()
   readonly item_slot: string;
 
@@ -50,11 +50,11 @@ export class ItemDto {
   @IsInt()
   readonly max_ilevel: number;
 
-  @IsDefined()
+  @IsOptional()
   @IsString()
   readonly image_url: string;
 
-  @IsDefined()
+  @IsOptional()
   @IsString()
   readonly image_url_large: string;
 
@@ -62,7 +62,7 @@ export class ItemDto {
   @IsObject()
   readonly capabilities: { [key: string]: string };
 
-  @IsDefined()
+  @IsOptional()
   @IsString({
     each: true,
   })

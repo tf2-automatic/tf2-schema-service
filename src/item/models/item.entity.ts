@@ -22,7 +22,9 @@ export class Item {
   @Column()
   proper_name: boolean;
 
-  @Column()
+  @Column({
+    nullable: true,
+  })
   item_slot: string;
 
   @Column({
@@ -40,10 +42,14 @@ export class Item {
   })
   max_ilevel: number;
 
-  @Column()
+  @Column({
+    nullable: true,
+  })
   image_url: string;
 
-  @Column()
+  @Column({
+    nullable: true,
+  })
   image_url_large: string;
 
   @Column({
@@ -53,6 +59,7 @@ export class Item {
 
   @Column({
     type: 'jsonb',
+    nullable: true,
   })
   used_by_classes: string[];
 }
