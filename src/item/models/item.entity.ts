@@ -1,4 +1,4 @@
-import { Column, Entity, PrimaryColumn } from 'typeorm';
+import { Column, Entity, Index, PrimaryColumn } from 'typeorm';
 
 @Entity()
 export class Item {
@@ -17,6 +17,7 @@ export class Item {
   item_type_name: string;
 
   @Column()
+  @Index()
   item_name: string;
 
   @Column()
