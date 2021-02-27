@@ -7,8 +7,9 @@ import configuration, {
   QueueConfig,
 } from './common/config/configuration';
 import { validation } from './common/config/validation';
-import { Item } from './schema/models/item.entity';
+import { Item } from './item/models/item.entity';
 import { SchemaModule } from './schema/schema.module';
+import { ItemModule } from './item/item.module';
 
 @Module({
   imports: [
@@ -55,6 +56,7 @@ import { SchemaModule } from './schema/schema.module';
       },
     }),
     SchemaModule,
+    ItemModule,
   ],
 })
 export class AppModule {}

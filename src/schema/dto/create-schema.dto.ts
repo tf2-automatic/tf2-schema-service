@@ -9,7 +9,7 @@ import {
   ValidateNested,
 } from 'class-validator';
 
-class ItemDto {
+export class ItemDto {
   @IsDefined()
   @IsString()
   readonly name: string;

@@ -1,18 +1,15 @@
 import { InjectQueue } from '@nestjs/bull';
 import { Injectable } from '@nestjs/common';
-import { InjectRepository } from '@nestjs/typeorm';
 import { Queue } from 'bull';
-import { Repository } from 'typeorm';
 import { CreateSchemaDto } from './dto/create-schema.dto';
-import { Item } from './models/item.entity';
+import { ItemService } from '../item/item.service';
 
 @Injectable()
 export class SchemaService {
   constructor(
-    @InjectRepository(Item)
-    private itemRepository: Repository<Item>,
     @InjectQueue('schema')
-    private schemaQueue: Queue,
+    private readonly schemaQueue: Queue,
+    private readonly itemService: ItemService,
   ) {}
 
   async enqueueSchema(): Promise<void> {
@@ -42,14 +39,6 @@ export class SchemaService {
   }
 
   async saveSchema(schema: CreateSchemaDto): Promise<void> {
-    await this.itemRepository.save(this.itemRepository.create(schema.items));
-  }
-
-  getItemByDefindex(defindex: number): Promise<Item> {
-    return this.itemRepository.findOne({
-      where: {
-        defindex,
-      },
-    });
+    await this.itemService.saveItems(schema.items);
   }
 }

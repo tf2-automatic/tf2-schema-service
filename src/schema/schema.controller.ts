@@ -1,13 +1,4 @@
-import {
-  Body,
-  Controller,
-  Get,
-  NotFoundException,
-  Param,
-  ParseIntPipe,
-  Post,
-  ValidationPipe,
-} from '@nestjs/common';
+import { Body, Controller, Post, ValidationPipe } from '@nestjs/common';
 import { CreateSchemaDto } from './dto/create-schema.dto';
 import { SchemaService } from './schema.service';
 
@@ -24,19 +15,6 @@ export class SchemaController {
     return {
       enqueued: true,
     };
-  }
-
-  @Get('/items/:defindex')
-  async getItemByDefindex(
-    @Param('defindex', new ParseIntPipe()) defindex: number,
-  ) {
-    const item = await this.schemaService.getItemByDefindex(defindex);
-
-    if (!item) {
-      throw new NotFoundException('Item not found');
-    }
-
-    return item;
   }
 
   @Post()

@@ -1,20 +1,23 @@
 import { Test, TestingModule } from '@nestjs/testing';
-import { SchemaService } from './schema.service';
+import { getRepositoryToken } from '@nestjs/typeorm';
+import { ItemService } from './item.service';
+import { Item } from './models/item.entity';
 
-describe('SchemaService', () => {
-  let service: SchemaService;
+describe('ItemService', () => {
+  let service: ItemService;
 
   beforeEach(async () => {
     const module: TestingModule = await Test.createTestingModule({
       providers: [
+        ItemService,
         {
-          provide: SchemaService,
+          provide: getRepositoryToken(Item),
           useValue: {},
         },
       ],
     }).compile();
 
-    service = module.get<SchemaService>(SchemaService);
+    service = module.get<ItemService>(ItemService);
   });
 
   it('should be defined', () => {

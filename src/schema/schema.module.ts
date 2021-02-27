@@ -1,16 +1,15 @@
 import { Module } from '@nestjs/common';
 import { SchemaService } from './schema.service';
 import { SchemaController } from './schema.controller';
-import { TypeOrmModule } from '@nestjs/typeorm';
-import { Item } from './models/item.entity';
 import { BullModule } from '@nestjs/bull';
+import { ItemModule } from '../item/item.module';
 
 @Module({
   imports: [
-    TypeOrmModule.forFeature([Item]),
     BullModule.registerQueue({
       name: 'schema',
     }),
+    ItemModule,
   ],
   providers: [SchemaService],
   controllers: [SchemaController],
