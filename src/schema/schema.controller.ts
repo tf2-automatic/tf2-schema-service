@@ -1,5 +1,6 @@
 import { Body, Controller, Post, ValidationPipe } from '@nestjs/common';
 import { CreateSchemaDto } from './dto/create-schema.dto';
+import { EnqueueRepeatingSchemaDto } from './dto/enqueue-repeating-schema.dto';
 import { EnqueueSchemaDto } from './dto/enqueue-schema.dto';
 import { SchemaService } from './schema.service';
 
@@ -14,6 +15,19 @@ export class SchemaController {
     enqueued: boolean;
   }> {
     await this.schemaService.enqueueSchema(input.start ?? 0);
+
+    return {
+      enqueued: true,
+    };
+  }
+
+  @Post('repeating')
+  async enqueueRepeatingSchema(
+    @Body(new ValidationPipe()) input: EnqueueRepeatingSchemaDto,
+  ): Promise<{
+    enqueued: boolean;
+  }> {
+    await this.schemaService.enqueueRepeatingSchema(input.cron);
 
     return {
       enqueued: true,

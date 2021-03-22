@@ -27,6 +27,20 @@ export class SchemaService {
     );
   }
 
+  async enqueueRepeatingSchema(cron: string): Promise<void> {
+    await this.schemaQueue.add(
+      {
+        start: 0,
+      },
+      {
+        jobId: 'repeating',
+        repeat: {
+          cron,
+        },
+      },
+    );
+  }
+
   async saveSchema(schema: CreateSchemaDto): Promise<void> {
     await this.itemService.saveItems(schema.items);
   }
