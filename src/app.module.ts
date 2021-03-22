@@ -10,6 +10,7 @@ import { validation } from './common/config/validation';
 import { Item } from './item/models/item.entity';
 import { SchemaModule } from './schema/schema.module';
 import { ItemModule } from './item/item.module';
+import IORedis from 'ioredis';
 
 @Module({
   imports: [
@@ -45,12 +46,28 @@ import { ItemModule } from './item/item.module';
       useFactory: (configService: ConfigService) => {
         const queueConfig = configService.get<QueueConfig>('queue');
 
-        return {
-          redis: {
+        let redisConfig: IORedis.RedisOptions;
+
+        if (queueConfig.isSentinel) {
+          redisConfig = {
+            sentinels: [
+              {
+                host: queueConfig.host,
+                port: queueConfig.port,
+              },
+            ],
+            name: queueConfig.set,
+          };
+        } else {
+          redisConfig = {
             host: queueConfig.host,
             port: queueConfig.port,
             password: queueConfig.password,
-          },
+          };
+        }
+
+        return {
+          redis: redisConfig,
           prefix: 'bull',
         };
       },

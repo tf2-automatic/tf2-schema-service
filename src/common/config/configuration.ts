@@ -13,9 +13,11 @@ export interface DatabaseConfig {
 }
 
 export interface QueueConfig {
+  isSentinel: boolean;
   host: string;
   port: number;
-  password: string;
+  password?: string;
+  set?: string;
 }
 
 export default (): Config => {
@@ -32,9 +34,11 @@ export default (): Config => {
       database: process.env.POSTGRES_DATABASE,
     },
     queue: {
+      isSentinel: process.env.QUEUE_IS_SENTINEL === 'true',
       host: process.env.QUEUE_HOST,
       port: parseInt(process.env.QUEUE_PORT, 10),
       password: process.env.QUEUE_PASSWORD,
+      set: process.env.QUEUE_SET,
     },
   };
 };
