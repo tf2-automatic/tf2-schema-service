@@ -34,6 +34,17 @@ export class SchemaController {
     };
   }
 
+  @Post('repeating')
+  async removeRepeatingSchema(): Promise<{
+    removed: boolean;
+  }> {
+    await this.schemaService.removeRepeatingSchema();
+
+    return {
+      removed: true,
+    };
+  }
+
   @Post()
   async saveSchema(
     @Body(new ValidationPipe()) createSchema: CreateSchemaDto,
