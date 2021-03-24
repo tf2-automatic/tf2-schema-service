@@ -11,6 +11,7 @@ import { Item } from './item/models/item.entity';
 import { SchemaModule } from './schema/schema.module';
 import { ItemModule } from './item/item.module';
 import IORedis from 'ioredis';
+import { HealthModule } from './health/health.module';
 
 @Module({
   imports: [
@@ -72,6 +73,7 @@ import IORedis from 'ioredis';
         };
       },
     }),
+    HealthModule,
     SchemaModule,
     ItemModule,
   ],
