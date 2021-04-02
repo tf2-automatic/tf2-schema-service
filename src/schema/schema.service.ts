@@ -29,32 +29,6 @@ export class SchemaService {
     );
   }
 
-  async enqueueRepeatingSchema(cron: string): Promise<void> {
-    await this.schemaQueue.add(
-      {
-        start: 0,
-      },
-      {
-        jobId: 'repeating',
-        repeat: {
-          cron,
-        },
-        removeOnComplete: true,
-        removeOnFail: 10,
-      },
-    );
-  }
-
-  async removeRepeatingSchema(): Promise<void> {
-    const job = await this.schemaQueue.getJob('repeating');
-
-    if (job === null) {
-      return;
-    }
-
-    return job.remove();
-  }
-
   async saveSchema(schema: CreateSchemaDto): Promise<void> {
     await this.itemService.saveItems(schema.items);
   }
