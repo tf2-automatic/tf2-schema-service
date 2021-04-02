@@ -37,6 +37,8 @@ export class SchemaService {
         repeat: {
           cron,
         },
+        removeOnComplete: true,
+        removeOnFail: 10,
       },
     );
   }
