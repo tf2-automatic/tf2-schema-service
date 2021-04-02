@@ -23,6 +23,8 @@ export class SchemaService {
           type: 'exponential',
           delay: 5000,
         },
+        removeOnComplete: true,
+        removeOnFail: 10,
       },
     );
   }
