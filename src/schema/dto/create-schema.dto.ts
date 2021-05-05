@@ -60,7 +60,7 @@ export class ItemDto {
 
   @IsDefined()
   @IsObject()
-  readonly capabilities: { [key: string]: string };
+  readonly capabilities: { [key: string]: boolean };
 
   @IsOptional()
   @IsString({
