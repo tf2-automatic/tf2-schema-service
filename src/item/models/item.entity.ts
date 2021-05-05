@@ -56,7 +56,7 @@ export class Item {
   @Column({
     type: 'jsonb',
   })
-  capabilities: { [key: string]: string };
+  capabilities: { [key: string]: boolean };
 
   @Column({
     type: 'jsonb',
