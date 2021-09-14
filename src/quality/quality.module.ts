@@ -8,6 +8,5 @@ import { TypeOrmModule } from '@nestjs/typeorm';
   imports: [TypeOrmModule.forFeature([Quality])],
   providers: [QualityService],
   controllers: [QualityController],
-  exports: [QualityService],
 })
 export class QualityModule {}
