@@ -4,9 +4,7 @@ import { SchemaController } from './schema.controller';
 import { ItemModule } from '../item/item.module';
 
 @Module({
-  imports: [
-    ItemModule,
-  ],
+  imports: [ItemModule],
   providers: [SchemaService],
   controllers: [SchemaController],
 })

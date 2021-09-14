@@ -6,7 +6,6 @@ import { validation } from './common/config/validation';
 import { Item } from './item/models/item.entity';
 import { SchemaModule } from './schema/schema.module';
 import { ItemModule } from './item/item.module';
-import IORedis from 'ioredis';
 import { HealthModule } from './health/health.module';
 import { QualityModule } from './quality/quality.module';
 import { Quality } from './quality/models/quality.entity';
