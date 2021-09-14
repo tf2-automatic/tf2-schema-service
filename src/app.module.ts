@@ -8,6 +8,8 @@ import { ItemModule } from './item/item.module';
 import { HealthModule } from './health/health.module';
 import { QualityModule } from './quality/quality.module';
 import { Quality } from './quality/models/quality.entity';
+import { EffectModule } from './effect/effect.module';
+import { Effect } from './effect/models/effect.model';
 
 @Module({
   imports: [
@@ -30,7 +32,7 @@ import { Quality } from './quality/models/quality.entity';
           username: databaseConfig.username,
           password: databaseConfig.password,
           database: databaseConfig.database,
-          entities: [Item, Quality],
+          entities: [Item, Quality, Effect],
           autoLoadModels: true,
           synchronize: process.env.TYPEORM_SYNCRONIZE === 'true',
           keepConnectionAlive: true,
@@ -40,6 +42,7 @@ import { Quality } from './quality/models/quality.entity';
     HealthModule,
     ItemModule,
     QualityModule,
+    EffectModule,
   ],
 })
 export class AppModule {}
