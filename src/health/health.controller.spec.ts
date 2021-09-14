@@ -8,8 +8,7 @@ describe('HealthController', () => {
   beforeEach(async () => {
     const module: TestingModule = await Test.createTestingModule({
       imports: [TerminusModule],
-      providers: [
-      ],
+      providers: [],
       controllers: [HealthController],
     }).compile();
 
@@ -20,4 +19,3 @@ describe('HealthController', () => {
     expect(controller).toBeDefined();
   });
 });
- 
