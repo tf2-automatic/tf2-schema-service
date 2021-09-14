@@ -6,7 +6,7 @@ import { SchemaService } from './schema.service';
 export class SchemaController {
   constructor(private readonly schemaService: SchemaService) {}
 
-  @Post()
+  @Post('items')
   async saveSchema(
     @Body(new ValidationPipe()) createSchema: SaveSchemaItemsDto,
   ): Promise<void> {
