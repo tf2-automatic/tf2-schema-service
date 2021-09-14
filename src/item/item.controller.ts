@@ -23,7 +23,7 @@ export class ItemController {
     return this.itemService.saveItems(save.items);
   }
 
-  @Get('/:defindex')
+  @Get('/defindex/:defindex')
   async getItemByDefindex(
     @Param('defindex', new ParseIntPipe()) defindex: number,
   ) {
