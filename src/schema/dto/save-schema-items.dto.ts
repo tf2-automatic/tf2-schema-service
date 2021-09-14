@@ -69,7 +69,7 @@ export class ItemDto {
   readonly used_by_classes: string[];
 }
 
-export class CreateSchemaDto {
+export class SaveSchemaItemsDto {
   @IsDefined()
   @IsArray()
   @ValidateNested({

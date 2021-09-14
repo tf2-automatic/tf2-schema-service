@@ -9,11 +9,6 @@ const validation = Joi.object({
   POSTGRES_USERNAME: Joi.string().required(),
   POSTGRES_PASSWORD: Joi.string().required(),
   POSTGRES_DATABASE: Joi.string().required(),
-  QUEUE_IS_SENTINEL: Joi.boolean().optional(),
-  QUEUE_HOST: Joi.string().required(),
-  QUEUE_PORT: Joi.number().required(),
-  QUEUE_PASSWORD: Joi.string().optional(),
-  QUEUE_SET: Joi.string().optional(),
 });
 
 export { validation };

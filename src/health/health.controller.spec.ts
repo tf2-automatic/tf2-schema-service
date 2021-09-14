@@ -1,6 +1,5 @@
 import { TerminusModule } from '@nestjs/terminus';
 import { Test, TestingModule } from '@nestjs/testing';
-import { BullHealthIndicator } from './bull.health';
 import { HealthController } from './health.controller';
 
 describe('HealthController', () => {
@@ -10,10 +9,6 @@ describe('HealthController', () => {
     const module: TestingModule = await Test.createTestingModule({
       imports: [TerminusModule],
       providers: [
-        {
-          provide: BullHealthIndicator,
-          useValue: {},
-        },
       ],
       controllers: [HealthController],
     }).compile();
@@ -25,3 +20,4 @@ describe('HealthController', () => {
     expect(controller).toBeDefined();
   });
 });
+ 
