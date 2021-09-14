@@ -1,16 +1,27 @@
 import {
+  Body,
   Controller,
   Get,
   NotFoundException,
   Param,
   ParseIntPipe,
+  Post,
+  ValidationPipe,
 } from '@nestjs/common';
+import { SaveSchemaItemsDto } from './dto/save-schema-items.dto';
 import { ItemService } from './item.service';
 import { Item } from './models/item.entity';
 
 @Controller('items')
 export class ItemController {
   constructor(private readonly itemService: ItemService) {}
+
+  @Post()
+  saveItems(
+    @Body(new ValidationPipe()) save: SaveSchemaItemsDto,
+  ): Promise<void> {
+    return this.itemService.saveItems(save.items);
+  }
 
   @Get('/:defindex')
   async getItemByDefindex(

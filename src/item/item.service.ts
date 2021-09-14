@@ -2,7 +2,7 @@ import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Item } from './models/item.entity';
 import { Repository } from 'typeorm';
-import { ItemDto } from '../schema/dto/save-schema-items.dto';
+import { ItemDto } from './dto/save-schema-items.dto';
 
 @Injectable()
 export class ItemService {
